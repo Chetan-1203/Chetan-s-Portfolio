@@ -1,20 +1,17 @@
-﻿.navbar-nav .nav-item .nav-link {
+﻿.nav-item ::deep a {
     color: rgb(255, 255, 255);
     font-family: Garamond, serif;
-    font-size: 18px;
+    font-size: 30px;
     font-weight: bold;
     text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.7);
     margin-right: 25px;
     transition: color 0.3s, transform 0.3s;
 }
 
-    .navbar-nav .nav-item .nav-link:hover {
+    .nav-item ::deep a:hover {
         color: rgb(255, 255, 255); /* Change color to a shiny gold */
         text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5); /* Add a gold shadow */
         transform: scale(1.1); /* Zoom in by 10% on hover */
         border-color: red; /* Change border color to red on hover */
-        -webkit-animation: glow 1s ease-in-out infinite alternate;
-        -moz-animation: glow 1s ease-in-out infinite alternate;
-        animation: glow 1s ease-in-out infinite alternate;
     }
 
