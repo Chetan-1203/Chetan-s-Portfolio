@@ -1,7 +1,7 @@
 ﻿.nav-item ::deep a {
     color: rgb(255, 255, 255);
     font-family: Garamond, serif;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
     text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.7);
     margin-right: 25px;
@@ -9,9 +9,15 @@
 }
 
     .nav-item ::deep a:hover {
-        color: rgb(255, 255, 255); /* Change color to a shiny gold */
-        text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5); /* Add a gold shadow */
-        transform: scale(1.1); /* Zoom in by 10% on hover */
-        border-color: red; /* Change border color to red on hover */
+        color: rgb(255, 255, 255); 
+        text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5); 
+        transform: scale(1.1); 
+        border-color: red; 
+    }
+
+    .nav-item ::deep a.active {
+        transform: scale(1.5);
+        text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+        color: red;
     }
 
