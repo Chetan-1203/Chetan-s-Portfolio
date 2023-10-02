@@ -1,7 +1,10 @@
 ﻿
 <p class="fw-bolder">
-	Hello, My name is Chetan Badgujar <br/>
-	I'm Full Stack Developer
+	Hello, My name is Chetan <span style="color:red">Badgujar</span>
+</p>
+
+<p class="fw-bolder" id="jobDescription">
+	@jobDescriptions[currentIndex]
 </p>
 <p class="fw-normal">
 	Greetings! I'm .NET Full Stack Developer, dedicated to crafting seamless web solutions.<br/>
@@ -15,5 +18,24 @@
 </p>
 
 @code {
+	private string[] jobDescriptions = new string[]
+			{
+		"I'm a full stack developer with expertise in various technologies.",
+		"I'm passionate about creating user-friendly web apps.",
+		"I'm experienced in both front-end and back-end development.",
+		"I enjoy tackling complex problems and finding innovative solutions."
+	};
+	private int currentIndex = 0;
 
+	protected override async Task OnInitializedAsync()
+	{
+		while (true)
+		{
+			currentIndex = (currentIndex + 1) % jobDescriptions.Length;
+			StateHasChanged();
+			await Task.Delay(2000); // Delay for 3 seconds
+		}
+	}
+
+	
 }

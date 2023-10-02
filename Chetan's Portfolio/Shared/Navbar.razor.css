@@ -1,7 +1,7 @@
 ﻿.nav-item ::deep a {
     color: rgb(255, 255, 255);
     font-family: Garamond, serif;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.7);
     margin-right: 25px;
@@ -16,7 +16,7 @@
     }
 
     .nav-item ::deep a.active {
-        transform: scale(1.5);
+        transform: scale(1.3);
         text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
         color: red;
     }
