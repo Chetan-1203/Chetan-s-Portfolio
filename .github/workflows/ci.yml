@@ -1,36 +1,37 @@
-name: 'Publish application'
-on: push
+name: github pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-        # Checkout the code
-        - uses: actions/checkout@v2
+      # Checkout the code
+      - uses: actions/checkout@v2
 
-        # Install .NET Core SDK
-        - name: Setup .NET Core
-          uses: actions/setup-dotnet@v2
-          with:
-            dotnet-version: 7.0.401
-        # Run tests
-        - name: Test
-          run: dotnet test
+      # Install .NET Core SDK
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+          
+      # Install dotnet wasm buildtools workload
+      - name: Install .NET WASM Build Tools
+        run: dotnet workload install wasm-tools
+          
+      # Publishes Blazor project to the release-folder
+      - name: Publish .NET Core Project
+        run: dotnet publish Web/Web.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
 
-        # Generate the website
-        - name: Publish
-          run: dotnet publish Chetan_s_Portfolio.csproj --configuration Release
-
-        # Publish the website
-        - name: GitHub Pages action
-          if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
-          uses: peaceiris/actions-gh-pages@v3.6.1
-          with:
-            github_token: ${{ secrets.PUBLISH_TOKEN }}
-            publish_branch: gh-pages
-            publish_dir: bin/Release/netstandard2.1/publish/wwwroot
-            allow_empty_commit: false
-            keep_files: false
-            force_orphan: true
-            # TODO uncomment the following line if you have a custom domain name
-            # cname: demo.meziantou.net
+      - name: Commit wwwroot to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist/Web/wwwroot
